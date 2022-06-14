@@ -1,33 +1,41 @@
-import {Route} from 'react-router-dom';
-import './App.css';
-import Nav from './components/Nav';
-import About from './pages/About';
-import Main from './pages/Main';
-import Stock from './pages/Stock';
-import Dashboard from './pages/Dashboard';
-import stocks from './stock-data';
+import { Route, Switch } from "react-router-dom";
+import "./App.css";
+import Nav from "./components/Nav";
+import About from "./pages/About";
+import Main from "./pages/Main";
+import Stock from "./pages/Stock";
+import Dashboard from "./pages/Dashboard";
+import stocks from "./stock-data";
 
 function App() {
   return (
     <div className="App">
-    <Nav />
-    <Switch>
-    <Route exact path="/">
-        <Main />
-      </Route>
+      <Nav />
 
-      <Route exact path="/stock"
-        render={(routerProps) => <Dashboard stockInfo={stocks} {...routerProps}/>}>
-      </Route>
+      <Switch>
+        <Route exact path="/">
+          <Main />
+        </Route>
 
-      <Route  path="/stock/:symbol"
-      render={(routerProps) => <Stock stockInfo={stocks} {...routerProps}/>}>
-      </Route>
+        <Route
+          exact
+          path="/stock"
+          render={(routerProps) => (
+            <Dashboard stockInfo={stocks} {...routerProps} />
+          )}
+        ></Route>
 
-      <Route path="/about">
-        <About />
-      </Route>
-    </Switch>
+        <Route
+          path="/stock/:symbol"
+          render={(routerProps) => (
+            <Stock stockInfo={stocks} {...routerProps} />
+          )}
+        ></Route>
+
+        <Route path="/about">
+          <About />
+        </Route>
+      </Switch>
     </div>
   );
 }
